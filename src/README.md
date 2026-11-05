@@ -1,24 +1,28 @@
-# SisaRasa
+<p><a href="../README.md">← Ringkasan proyek</a></p>
 
-Android marketplace paket kejutan surplus makanan: penjual menerbitkan paket yang masih layak, pembeli memesan dengan diskon 50–70%, lalu mengambilnya memakai QR atau OTP. Identitas gerai dibuka sesudah pembayaran. Pembayaran, rekening, fee, refund dan pencairan **SIMULASI**, tanpa transfer uang nyata.
+<img src="docs/assets/readme/hero.svg" alt="SisaRasa — aplikasi Android pemesanan paket surplus makanan." width="1200" />
 
-![Implementasi Flutter](docs/assets/app-overview.png)
+# Dokumentasi SisaRasa
 
-## Panduan isi
+Android marketplace paket kejutan surplus makanan: penjual menerbitkan paket yang masih layak, pembeli memesan dengan diskon 50–70%, lalu mengambilnya memakai QR atau OTP. Identitas gerai dibuka sesudah pembayaran. Pembayaran dan pencairan dijelaskan pada [catatan](#catatan).
+
+<p><img src="docs/assets/readme/stack.svg" alt="Android, Flutter, Node.js dan PostgreSQL" width="1200" /></p>
+
+## Daftar isi
 
 - [Teknologi](#teknologi)
 - [Struktur folder](#struktur-folder)
-- [Arsitektur dan tanggung jawab](#arsitektur-dan-tanggung-jawab)
+- [Arsitektur](#arsitektur)
 - [Alur transaksi](#alur-transaksi)
 - [Database dan penyimpanan](#database-dan-penyimpanan)
-- [Mulai dari nol](#mulai-dari-nol)
+- [Mulai lokal](#mulai-lokal)
 - [Konfigurasi](#konfigurasi)
 - [Fitur](#fitur)
-- [Mencoba aplikasi dari dua peran](#mencoba-aplikasi-dari-dua-peran)
+- [Coba aplikasi](#coba-aplikasi)
 - [Mengerjakan issue](#mengerjakan-issue)
 - [Pengujian lokal](#pengujian-lokal)
 - [Build release dan operasi](#build-release-dan-operasi)
-- [Diagnosis umum](#diagnosis-umum)
+- [Masalah umum](#masalah-umum)
 
 ## Teknologi
 
@@ -28,14 +32,24 @@ Diuji dengan Flutter **3.47.2**, Dart **3.13.2**, Node **22.18**, TypeScript **7
 
 Struktur dari root repo:
 
+| Bagian | Fungsi |
+| --- | --- |
+| `android-app/` | Tampilan, controller, perangkat dan cache tiket |
+| `backend/` | HTTP, aturan transaksi, SQL, notifikasi dan worker |
+| `scripts/`, `deploy/` | Menjalankan, menguji, build dan operasi |
+| `design/`, `docs/` | Desain dan laporan pengujian |
+
+<details>
+<summary><strong>Buka struktur folder lengkap</strong></summary>
+
 ```text
 sarirasa/
-├── README.md                       Pintu masuk dokumentasi
+├── README.md                       Ringkasan proyek
 ├── CONTRIBUTING.md                 Branch, issue, PR dan review tim
 ├── SECURITY.md                     Aturan kredensial dan pelaporan
 ├── .github/
 │   ├── ISSUE_TEMPLATE/             Form bug dan usulan
-│   ├── pull_request_template.md    Bukti perubahan/test dan review
+│   ├── pull_request_template.md    Template pull request
 │   └── workflows/ci.yml            Backend/PostgreSQL dan Flutter di CI
 ├── docs/                           Laporan M9, AI usage dan logbook
 └── src/                            Seluruh implementasi sesuai M9
@@ -74,11 +88,18 @@ sarirasa/
     └── tests/README.md             Indeks lokasi pengujian lintas toolchain
 ```
 
+</details>
+
 `node_modules/`, `build/`, `.dart_tool/`, `.env`, `.secrets/`, `uploads/`, `backups/` dan APK pada `artifacts/` dibuat lokal dan diabaikan Git. Clone baru tidak membutuhkan salinan folder hasil build dari pengembang lain.
 
-## Arsitektur dan tanggung jawab
+## Arsitektur
 
 Sistem memakai **client-server dengan layer per fitur**. Flutter menangani interaksi/perangkat; API memegang aturan bisnis dan otorisasi; PostgreSQL menyimpan state transaksi. API dan worker adalah dua proses dari source backend yang sama. Worker memakai PostgreSQL sebagai penyimpanan antrean, tanpa Redis atau akun message broker tambahan.
+
+<img src="docs/assets/readme/architecture.svg" alt="Alur Flutter ke API dan PostgreSQL, dengan media privat serta worker background." width="1200" />
+
+<details>
+<summary>Diagram versi teks</summary>
 
 ```text
 Android Flutter
@@ -96,6 +117,8 @@ PostgreSQL                            uploads/
           │ klaim job, retry, expiry, refund, payout, publikasi outbox
 Worker background
 ```
+
+</details>
 
 ### Flutter
 
@@ -117,6 +140,8 @@ Setiap fitur pada `backend/src/modules/` memisahkan **route** (HTTP/identitas), 
 Notifikasi berasal dari outbox/inbox persisten. WebSocket menyampaikan pembaruan saat tersambung; cursor catch-up menyusulkan event yang terlewat. Foreground monitoring Android bersifat opt-in dan dapat dihentikan sistem. Inbox tetap menjadi sumber riwayat, sehingga layanan tidak menjanjikan push selalu hidup ketika aplikasi mati.
 
 ## Alur transaksi
+
+<img src="docs/assets/readme/journey.svg" alt="Terbitkan, pesan, ambil dan selesaikan paket." width="1200" />
 
 1. **Penawaran:** mitra membuat paket, kuota, harga, alergen dan jadwal; server memeriksa kelayakan input dan aturan diskon/waktu. Pembeli mendapat katalog anonim tanpa identitas gerai sebelum paid.
 2. **Checkout:** server menahan satu kuota dalam transaksi dan menerbitkan invoice. Retry dengan idempotency key yang sama memakai hasil sebelumnya. Kuota yang ditahan tidak dapat dibeli ulang oleh pembeli lain.
@@ -142,7 +167,7 @@ Skema beserta **atribut, tipe, foreign key, constraint dan index** adalah sumber
 
 Database berada pada volume Docker; berkas media pada `uploads/` dengan akses privat. Tiket perangkat berada di secure storage Android. Ketiganya memiliki fungsi berbeda: cache ponsel tidak menggantikan database, dan backup database saja tidak cukup untuk memulihkan media/kunci dekripsi. Prosedur lengkap ada di [operasi](docs/operations.md).
 
-## Mulai dari nol
+## Mulai lokal
 
 Prasyarat Linux: Git, Docker Engine dengan plugin Compose, Python 3.12+, Node 22 dan npm. Pengguna harus dapat menjalankan `docker` tanpa prompt interaktif. Untuk Android pasang Flutter 3.47.2, JDK21, SDK36/build tools36 serta terima lisensi Android dengan `flutter doctor --android-licenses`. Periksa `flutter doctor` sebelum build.
 
@@ -204,9 +229,9 @@ IP/URL server dibutuhkan **operator** untuk build/deployment dan tidak muncul pa
 | UC06 | Pengaduan dengan bukti privat, approve/reject, pembatalan dan refund, no-show dan worker timeout |
 | UC07 | Riwayat status, ulasan hanya pesanan selesai, metrik paket terselamatkan dan pencairan simulasi |
 
-[Pemetaan kebutuhan/kelas](docs/traceability.md) · [Kontrak API](backend/openapi.yaml) · [Skema dan atribut database](backend/migrations/001_initial.sql) · [Alur kerja tim](../CONTRIBUTING.md). Penanggung jawab dan kontribusi anggota dicatat melalui issue/PR yang benar-benar dikerjakan; baseline source tidak mengarang pembagian kontribusi individu.
+[Pemetaan kebutuhan/kelas](docs/traceability.md) · [Kontrak API](backend/openapi.yaml) · [Skema dan atribut database](backend/migrations/001_initial.sql) · [Alur kerja tim](../CONTRIBUTING.md). Pembagian modul dan kontribusi anggota dicatat melalui issue dan PR.
 
-## Mencoba aplikasi dari dua peran
+## Coba aplikasi
 
 1. Jalankan backend, migrasi dan seed; baca kredensial fiktif dari `.secrets/demo-access.txt`, atau registrasikan akun pembeli dan mitra sendiri.
 2. Masuk sebagai mitra, lengkapi profil/lokasi gerai, lalu buat penawaran yang jadwal dan batas konsumsinya masih berlaku. Konfirmasi kelayakan makanan wajib dipilih secara sadar.
@@ -234,6 +259,8 @@ Jangan memakai data bank nyata. Untuk pengujian waktu/expiry yang terkontrol gun
 Untuk perubahan kontrak, perbarui [OpenAPI](backend/openapi.yaml), model/parser Flutter dan test terkait bersama-sama. Aturan bisnis harus diuji di service/PostgreSQL, tidak cukup dengan widget test. Ikuti [CONTRIBUTING](../CONTRIBUTING.md) untuk issue, branch, commit dan review anggota lain.
 
 ## Pengujian lokal
+
+<img src="docs/assets/readme/evidence.svg" alt="Hasil pengujian lokal 5 November 2026: 47 backend, 63 Flutter, 6 Android native; 53 frame desain." width="1200" />
 
 Dari folder `src/`:
 
@@ -267,9 +294,9 @@ Signing key/password berada di `.secrets/` dan `android-app/android/key.properti
 
 Database/media persisten saat stop. Backup menyertakan dump, media dan recovery secret, memulihkan layanan setelah kegagalan, serta menguji restore di tempat terpisah. Salin backup terenkripsi ke luar host. Jangan menghapus volume atau mengganti `PICKUP_KEY` saat tiket lama masih aktif.
 
-Layanan finansial adalah simulasi; registrasi merchant bukan verifikasi fisik; informasi alergen/batas konsumsi berasal dari merchant dengan peringatan kontaminasi silang. Pemantauan notifikasi opt-in dan tunduk pada batas Android. Pengujian dua HP/kamera fisik, OEM dan kondisi 3G belum diklaim lulus.
+Registrasi merchant belum mencakup verifikasi identitas fisik. Informasi alergen dan batas konsumsi diisi oleh merchant. Pemantauan notifikasi memerlukan izin dan mengikuti batas Android.
 
-## Diagnosis umum
+## Masalah umum
 
 | Gejala | Pemeriksaan |
 | --- | --- |
@@ -283,3 +310,9 @@ Layanan finansial adalah simulasi; registrasi merchant bukan verifikasi fisik; i
 | Inbox tidak langsung berubah | Periksa koneksi/izin pemantauan, buka ulang aplikasi atau sinkronkan inbox. Android dapat menghentikan background service. |
 
 Gunakan `./scripts/health.sh` dan log API/worker untuk diagnosis operator. Jangan menyalin `.env`, token, QR/OTP aktif atau bukti pengguna ke issue publik. Lihat [hasil verifikasi](docs/verification.md) untuk batas pengujian yang sudah dibuktikan.
+
+## Catatan
+
+1. Pembayaran, rekening, fee, refund dan pencairan menggunakan simulasi; tidak ada transfer uang nyata.
+2. Screenshot dan akun uji menggunakan data fiktif.
+3. Pengujian dua HP/kamera fisik, perangkat minimum, baterai OEM dan jaringan3G belum dilakukan. Lihat [laporan pengujian](docs/verification.md).

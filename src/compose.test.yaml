@@ -1,0 +1,17 @@
+services:
+  test-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: sisarasa_test
+      POSTGRES_PASSWORD: disposable-test-only
+      POSTGRES_DB: sisarasa_test
+    ports:
+      - "127.0.0.1:55433:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sisarasa_test"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+    mem_limit: 512m

@@ -1,0 +1,323 @@
+{
+  "screens": [
+    {
+      "group": "buyer",
+      "id": "catalog",
+      "name": "SisaRasa · Katalog / preview",
+      "title": "Katalog"
+    },
+    {
+      "group": "buyer",
+      "id": "login",
+      "name": "login · SisaRasa",
+      "title": "SisaRasa"
+    },
+    {
+      "group": "buyer",
+      "id": "register",
+      "name": "register · SisaRasa",
+      "title": "SisaRasa"
+    },
+    {
+      "group": "buyer",
+      "id": "offer",
+      "name": "offer · Paket kejutan",
+      "title": "Paket kejutan"
+    },
+    {
+      "group": "buyer",
+      "id": "allergens",
+      "name": "allergens · Hindari alergen",
+      "title": "Hindari alergen"
+    },
+    {
+      "group": "buyer",
+      "id": "checkout",
+      "name": "checkout · Checkout",
+      "title": "Checkout"
+    },
+    {
+      "group": "buyer",
+      "id": "payment",
+      "name": "payment · Pembayaran simulasi",
+      "title": "Pembayaran simulasi"
+    },
+    {
+      "group": "buyer",
+      "id": "paid",
+      "name": "paid · Pesanan",
+      "title": "Pesanan"
+    },
+    {
+      "group": "buyer",
+      "id": "history",
+      "name": "history · Pesanan",
+      "title": "Pesanan"
+    },
+    {
+      "group": "buyer",
+      "id": "tickets",
+      "name": "tickets · Tiket offline",
+      "title": "Tiket offline"
+    },
+    {
+      "group": "buyer",
+      "id": "offline",
+      "name": "offline · Pesanan",
+      "title": "Pesanan"
+    },
+    {
+      "group": "buyer",
+      "id": "completed",
+      "name": "completed · Pesanan",
+      "title": "Pesanan"
+    },
+    {
+      "group": "buyer",
+      "id": "review",
+      "name": "review · Ulas paket",
+      "title": "Ulas paket"
+    },
+    {
+      "group": "buyer",
+      "id": "reviews",
+      "name": "reviews · Ulasan gerai",
+      "title": "Ulasan gerai"
+    },
+    {
+      "group": "buyer",
+      "id": "complaint",
+      "name": "complaint · Ajukan pengaduan",
+      "title": "Ajukan pengaduan"
+    },
+    {
+      "group": "buyer",
+      "id": "complaintDetail",
+      "name": "complaintDetail · Pengaduan",
+      "title": "Pengaduan"
+    },
+    {
+      "group": "buyer",
+      "id": "inbox",
+      "name": "inbox · Inbox",
+      "title": "Inbox"
+    },
+    {
+      "group": "buyer",
+      "id": "account",
+      "name": "account · Akun",
+      "title": "Akun"
+    },
+    {
+      "group": "buyer",
+      "id": "empty",
+      "name": "empty · SisaRasa",
+      "title": "SisaRasa"
+    },
+    {
+      "group": "buyer",
+      "id": "error",
+      "name": "error · SisaRasa",
+      "title": "SisaRasa"
+    },
+    {
+      "group": "buyer",
+      "id": "expired",
+      "name": "expired · Pesanan",
+      "title": "Pesanan"
+    },
+    {
+      "group": "buyer",
+      "id": "registerSeller",
+      "name": "registerSeller · SisaRasa",
+      "title": "SisaRasa"
+    },
+    {
+      "group": "buyer",
+      "id": "paymentFailed",
+      "name": "paymentFailed · Pembayaran gagal",
+      "title": "Pembayaran gagal"
+    },
+    {
+      "group": "buyer",
+      "id": "refunded",
+      "name": "refunded · Pesanan",
+      "title": "Pesanan"
+    },
+    {
+      "group": "buyer",
+      "id": "locationPermission",
+      "name": "locationPermission · Gunakan lokasi?",
+      "title": "Gunakan lokasi?"
+    },
+    {
+      "group": "buyer",
+      "id": "loginError",
+      "name": "loginError · SisaRasa",
+      "title": "SisaRasa"
+    },
+    {
+      "group": "buyer",
+      "id": "checkoutRecovery",
+      "name": "checkoutRecovery · Checkout",
+      "title": "Checkout"
+    },
+    {
+      "group": "seller",
+      "id": "dashboard",
+      "name": "dashboard · Penawaran",
+      "title": "Penawaran"
+    },
+    {
+      "group": "seller",
+      "id": "offerNew",
+      "name": "offerNew · Penawaran baru",
+      "title": "Penawaran baru"
+    },
+    {
+      "group": "seller",
+      "id": "offerEdit",
+      "name": "offerEdit · Ubah penawaran",
+      "title": "Ubah penawaran"
+    },
+    {
+      "group": "seller",
+      "id": "sellerOrders",
+      "name": "sellerOrders · Pesanan",
+      "title": "Pesanan"
+    },
+    {
+      "group": "seller",
+      "id": "sellerOrder",
+      "name": "sellerOrder · Pesanan",
+      "title": "Pesanan"
+    },
+    {
+      "group": "seller",
+      "id": "scan",
+      "name": "scan · Scan tiket pickup",
+      "title": "Scan tiket pickup"
+    },
+    {
+      "group": "seller",
+      "id": "otp",
+      "name": "otp · Validasi OTP",
+      "title": "Validasi OTP"
+    },
+    {
+      "group": "seller",
+      "id": "finance",
+      "name": "finance · Keuangan",
+      "title": "Keuangan"
+    },
+    {
+      "group": "seller",
+      "id": "sellerProfile",
+      "name": "sellerProfile · Profil",
+      "title": "Profil"
+    },
+    {
+      "group": "seller",
+      "id": "shop",
+      "name": "shop · Profil gerai",
+      "title": "Profil gerai"
+    },
+    {
+      "group": "seller",
+      "id": "complaints",
+      "name": "complaints · Daftar pengaduan",
+      "title": "Daftar pengaduan"
+    },
+    {
+      "group": "seller",
+      "id": "decision",
+      "name": "decision · Pengaduan",
+      "title": "Pengaduan"
+    },
+    {
+      "group": "seller",
+      "id": "sellerReviews",
+      "name": "sellerReviews · Ulasan gerai",
+      "title": "Ulasan gerai"
+    },
+    {
+      "group": "seller",
+      "id": "cancel",
+      "name": "cancel · Batalkan pesanan",
+      "title": "Batalkan pesanan"
+    },
+    {
+      "group": "seller",
+      "id": "refundDone",
+      "name": "refundDone · Pesanan",
+      "title": "Pesanan"
+    },
+    {
+      "group": "seller",
+      "id": "scanConfirm",
+      "name": "scanConfirm · Konfirmasi pickup",
+      "title": "Konfirmasi pickup"
+    },
+    {
+      "group": "seller",
+      "id": "pickupDone",
+      "name": "pickupDone · Pengambilan selesai",
+      "title": "Pengambilan selesai"
+    },
+    {
+      "group": "seller",
+      "id": "cameraDenied",
+      "name": "cameraDenied · Kamera belum tersedia",
+      "title": "Kamera belum tersedia"
+    },
+    {
+      "group": "seller",
+      "id": "notificationPermission",
+      "name": "notificationPermission · Pemantauan pesanan",
+      "title": "Pemantauan pesanan"
+    },
+    {
+      "group": "seller",
+      "id": "approved",
+      "name": "approved · Pengaduan",
+      "title": "Pengaduan"
+    },
+    {
+      "group": "seller",
+      "id": "rejected",
+      "name": "rejected · Pengaduan",
+      "title": "Pengaduan"
+    },
+    {
+      "group": "seller",
+      "id": "offerNewDate",
+      "name": "offerNewDate · Pilih tanggal",
+      "title": "Pilih tanggal"
+    },
+    {
+      "group": "seller",
+      "id": "offerNewTime",
+      "name": "offerNewTime · Pilih waktu",
+      "title": "Pilih waktu"
+    },
+    {
+      "group": "seller",
+      "id": "offerEditDate",
+      "name": "offerEditDate · Pilih tanggal",
+      "title": "Pilih tanggal"
+    },
+    {
+      "group": "seller",
+      "id": "offerEditTime",
+      "name": "offerEditTime · Pilih waktu",
+      "title": "Pilih waktu"
+    },
+    {
+      "group": "seller",
+      "id": "sellerInbox",
+      "name": "sellerInbox · Inbox",
+      "title": "Inbox"
+    }
+  ],
+  "screen_count": 53
+}

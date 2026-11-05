@@ -1,0 +1,40 @@
+name: sisarasa_app
+description: "SisaRasa: selamatkan paket surplus makanan dengan pickup terjadwal."
+publish_to: none
+version: 2.0.0+2
+
+environment:
+  sdk: ^3.13.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  dio: ^5.11.1
+  flutter_secure_storage: ^11.2.0
+  geolocator: ^14.1.1
+  mobile_scanner: ^7.4.2
+  qr_flutter: ^4.1.0
+  image_picker: ^1.2.3
+  intl: ^0.20.3
+  flutter_foreground_task: ^11.0.3
+  uuid: ^4.6.0
+
+dev_dependencies:
+  integration_test:
+    sdk: flutter
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: Lato
+      fonts:
+        - asset: assets/fonts/Lato-Regular.ttf
+        - asset: assets/fonts/Lato-Bold.ttf
+          weight: 700
+    - family: Liberation Serif
+      fonts:
+        - asset: assets/fonts/LiberationSerif-Regular.ttf

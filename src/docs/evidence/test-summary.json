@@ -1,0 +1,40 @@
+{
+  "verified_on": "2026-11-05",
+  "backend": {
+    "passed": 47,
+    "failed": 0,
+    "real_postgresql": true,
+    "retested_after_host_uid_fix": true
+  },
+  "flutter": {
+    "passed": 63,
+    "failed": 0,
+    "analyze": "clean",
+    "format": "clean"
+  },
+  "release_signing_guard": {
+    "passed": 1
+  },
+  "android_native": {
+    "passed": 6,
+    "platform": "Android 15 / API35 x86_64 emulator",
+    "scenarios": [
+      "marketplace",
+      "recovery",
+      "notification-denied",
+      "notification-timeout",
+      "notification-navigation",
+      "offline-ticket"
+    ],
+    "physical_device": false
+  },
+  "design": {
+    "native_screens": 53,
+    "valid_navigation_links": 180,
+    "pages": 3,
+    "developer_screen_removed": true
+  },
+  "source_publication": {
+    "build_dependencies_secrets_runtime_data_excluded": true
+  }
+}

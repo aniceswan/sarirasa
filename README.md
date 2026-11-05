@@ -2,7 +2,9 @@
 
 Aplikasi Android untuk menyelamatkan surplus makanan lewat paket kejutan dan pengambilan terjadwal. Flutter, Express/TypeScript, PostgreSQL dan worker transaksi. Pembayaran, refund dan pencairan memakai simulasi yang ditandai di aplikasi.
 
-**[Panduan instalasi, menjalankan lokal dan pengujian → src/README.md](src/README.md)**
+**[Dokumentasi lengkap aplikasi → src/README.md](src/README.md)**
+
+[Struktur folder](src/README.md#struktur-folder) · [Arsitektur](src/README.md#arsitektur-dan-tanggung-jawab) · [Alur transaksi](src/README.md#alur-transaksi) · [Database](src/README.md#database-dan-penyimpanan) · [Menjalankan lokal](src/README.md#mulai-dari-nol) · [Konfigurasi](src/README.md#konfigurasi) · [Pengujian](src/README.md#pengujian-lokal)
 
 - [Panduan kontribusi](CONTRIBUTING.md) · [Laporkan bug](https://github.com/aniceswan/sarirasa/issues/new/choose)
 - [Implementasi dan kepatuhan M9](docs/M9/K01_G06_Implementasi.md) · [Penggunaan AI](docs/K01_G06_AI-Usage.md)
